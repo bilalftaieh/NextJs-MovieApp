@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Movie App
 
-## Getting Started
+## Description
 
-First, run the development server:
+This project is a movie app that allows users to check for movies and TV series. It's a great tool for movie enthusiasts who want to stay updated with the latest releases and popular shows.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How to Use
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To use this app, follow these steps:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository to your local machine.
+2. Run `npm install` to install all the necessary dependencies.
+3. Fill in the environment variables in your `.env` file. You will need to create a TMDB account and get the following details:
+    - `MOVIE_DB_BASEURL`
+    - `MOVIE_DB_APIKEY`
+    - `MOVIE_DB_BEARER_TOKEN`
+4. Run the app locally using `npm run dev`.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Live Demo
 
-## Learn More
+You can check out the live version of the app [here](https://movie-app-bilalftaieh.vercel.app).
 
-To learn more about Next.js, take a look at the following resources:
+## Contribution
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributions to this project are welcome! If you find a bug or think of a new feature, feel free to create an issue or open a pull request. Please ensure your code is clean and well-documented.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
+This project is licensed under the MIT License.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

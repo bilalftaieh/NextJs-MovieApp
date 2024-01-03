@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CountrySelection matches snapshot when clicked 1`] = `
+<div>
+  <label
+    class="block text-sm font-bold mb-2"
+    for="country"
+  >
+    Country
+  </label>
+  <select
+    class="shadow border rounded w-full py-2 px-3 text-black leading-tight    focus:outline-none focus:shadow-outline bg-white"
+    id="country"
+  >
+    <option
+      value=""
+    >
+      --Please choose a Country--
+    </option>
+    <option
+      value="en"
+    >
+      English
+    </option>
+    <option
+      value="fr"
+    >
+      French
+    </option>
+  </select>
+</div>
+`;
+
+exports[`LanguageSelection matches snapshot when clicked 1`] = `
+<div>
+  <label
+    class="block text-sm font-bold mb-2"
+    for="language"
+  >
+    Language
+  </label>
+  <select
+    class="shadow border rounded w-full py-2 px-3 text-black leading-tight    focus:outline-none focus:shadow-outline bg-white"
+    id="language"
+  >
+    <option
+      value=""
+    >
+      --Please choose a Language--
+    </option>
+    <option
+      value="en"
+    >
+      English
+    </option>
+    <option
+      value="fr"
+    >
+      French
+    </option>
+  </select>
+</div>
+`;
+
+exports[`SortSelection matches snapshot when clicked 1`] = `
+<div>
+  <label
+    class="block text-gray-300 text-sm font-bold mb-2"
+    for="sort"
+  >
+    Sort Results By
+  </label>
+  <select
+    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    id="sort"
+  >
+    <option
+      value=""
+    >
+      --Please choose an option--
+    </option>
+    <option
+      value="popularity.desc"
+    >
+      Popularity
+    </option>
+    <option
+      value="primary_release_date.desc"
+    >
+      Primary Release Date
+    </option>
+    <option
+      value="revenue.desc"
+    >
+      Box Office
+    </option>
+  </select>
+</div>
+`;

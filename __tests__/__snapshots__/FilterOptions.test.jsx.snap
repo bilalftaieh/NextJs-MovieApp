@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GenreSphere matches snapshot when props change 1`] = `
+<div>
+  <div
+    class="genre-sphere m-1 rounded-full p-4 text-sm font-semibold text-white
+        shadow-xl cursor-pointer overflow-hidden overflow-ellipsis hover:bg-blue-700"
+  >
+    Action
+  </div>
+</div>
+`;
+
+exports[`GenreSphere matches snapshot when props change 2`] = `
+<div>
+  <div
+    class="genre-sphere m-1 rounded-full p-4 text-sm font-semibold text-white
+        shadow-xl cursor-pointer overflow-hidden overflow-ellipsis bg-blue-800"
+  >
+    Adventure
+  </div>
+</div>
+`;
+
+exports[`MediaTypeFilter matches snapshot 1`] = `
+<div>
+  <a
+    href="/search/tv?query=example"
+  >
+    <button
+      class="flex flex-row items-center justify-between p-2 
+                bg-blue-800 rounded-md shadow-md cursor-pointer w-full"
+    >
+      <p
+        class="text-lg font-semibold text-gray-200"
+      >
+        example
+      </p>
+    </button>
+  </a>
+</div>
+`;
+
+exports[`SearchBar matches snapshot 1`] = `
+<div>
+  <input
+    class="shadow appearance-none border rounded w-full py-2 pl-5 px-3    leading-tight focus:outline-none focus:shadow-outline "
+    placeholder="Search..."
+    type="text"
+    value=""
+  />
+</div>
+`;

@@ -34,3 +34,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.tmp.*
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+.env
+.swc
+.github
+playwright.config.ts
