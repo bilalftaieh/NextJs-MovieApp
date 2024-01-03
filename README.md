@@ -18,7 +18,7 @@ To use this app, follow these steps:
 
 ## Live Demo
 
-You can check out the live version of the app [here](https://next-js-movie-app-bilalftaieh.app).
+You can check out the live version of the app [here](https://next-js-movie-app-bilalftaieh.vercel.app).
 
 ## Contribution
 
