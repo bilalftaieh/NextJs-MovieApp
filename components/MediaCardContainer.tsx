@@ -1,8 +1,8 @@
 // Importing necessary components, libraries and definitions
 import { Media, MediaCardContainerProps, Movie, TvSerie } from "@/lib/definitions";
-import Pagination from "./Pagination";
 import MediaCard from "./MediaCard";
 import { createMediaSlug } from "@/lib/utils";
+import AppPagination from "./AppPagination";
 
 // The main function for the MediaCardContainer component
 export default function MediaCardContainer(
@@ -13,7 +13,7 @@ export default function MediaCardContainer(
     // Returning the JSX for the component
     return (
         <div className="md:grid md:grid-cols-4 gap-4 flex flex-col items-center justify-center
-            md:items-start md:justify-start">
+            md:items-start md:justify-start overflow-hidden">
             {mediaArray.map((media: Media) => {
                 if (mediaType === 'movie') {
                     const movie = media as Movie;
@@ -34,7 +34,7 @@ export default function MediaCardContainer(
                 }
             })}
             <div className="col-span-4 flex justify-center h-full mb-5">
-                <Pagination
+                <AppPagination
                     totalPages={totalPages}
                 />
             </div>

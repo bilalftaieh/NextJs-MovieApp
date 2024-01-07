@@ -36,8 +36,8 @@ export const SearchBar = ({ handleInputChange, includeLabel, emptySearchBar }: S
                 onChange={handleChange}
                 placeholder="Search..."
                 value={inputValue}
-                className="shadow appearance-none border rounded w-full py-2 pl-5 px-3 
-             leading-tight focus:outline-none focus:shadow-outline "/>
+                className="shadow appearance-none border rounded w-full py-2 pl-5 px-3 text-white
+             leading-tight focus:outline-none focus:shadow-outline placeholder:text-custom-three"/>
         </>
     )
 }
@@ -52,7 +52,8 @@ export const SortSelect = ({ handleSortSelect, sortOption }: SortProps) => {
                 id="sort"
                 value={sortOption}
                 onChange={(e) => handleSortSelect(e.target.value)}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 
+                text-custom-three leading-tight focus:outline-none focus:shadow-outline"
             >
                 <option value="">--Please choose an option--</option>
                 <option value="popularity.desc">Popularity</option>
@@ -93,8 +94,8 @@ export const LanguageSelect = ({ languages, currentLanguage, handleLanguageSelec
                 id="language"
                 value={currentLanguage}
                 onChange={(e) => handleLanguageSelect(e.target.value)}
-                className="shadow border rounded w-full py-2 px-3 text-black leading-tight 
-                        focus:outline-none focus:shadow-outline bg-white"
+                className="shadow border rounded w-full py-2 px-3 text-custom-three leading-tight 
+                        focus:outline-none focus:shadow-outline"
             >
                 <option value="">--Please choose a Language--</option>
                 {languages.map((language, index) => {
@@ -117,8 +118,8 @@ export const CountrySelect = ({ currentCountry, countries, handleCountrySelect }
                 id="country"
                 value={currentCountry}
                 onChange={(e) => handleCountrySelect(e.target.value)}
-                className="shadow border rounded w-full py-2 px-3 text-black leading-tight 
-                        focus:outline-none focus:shadow-outline bg-white"
+                className="shadow border rounded w-full py-2 px-3 text-custom-three leading-tight 
+                        focus:outline-none focus:shadow-outline"
             >
                 <option value="">--Please choose a Country--</option>
                 {countries.map((country, index) => {
@@ -160,7 +161,8 @@ export const ReleaseYearSearch = ({ handleYearOnChange }: ReleaseYearProps) => {
                 onChange={(e) => handleYearOnChange(e.target.value)}
                 placeholder="Enter a year..."
                 defaultValue={searchParams.get('year')?.toString()}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 
+                placeholder:text-custom-three leading-tight focus:outline-none focus:shadow-outline"
             />
         </>
     )

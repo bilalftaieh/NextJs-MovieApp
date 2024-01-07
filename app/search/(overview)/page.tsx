@@ -1,11 +1,9 @@
 import MediaCard from "@/components/MediaCard";
-import { MediaCardsSkeleton } from "@/components/Skeletons";
 import { fetchMoviesFromSearch, fetchMultiDataFromSearch, fetchTvSeriesFromSearch } from "@/lib/movie-api";
-import { Suspense } from "react";
-import Pagination from "@/components/Pagination";
 import { Media, MediaType, Movie, TvSerie } from "@/lib/definitions";
 import { createMediaSlug } from "@/lib/utils";
 import type { Metadata } from 'next'
+import AppPagination from "@/components/AppPagination";
  
 export const metadata: Metadata = {
   title: 'Multi Search',
@@ -32,7 +30,7 @@ export default async function SearchPage({
 
     return (
         <div className="flex flex-col gap-7">
-    <p className="text-lg text-gray-400 ml-5"
+    <p className="text-lg ml-5"
     >A TOTAL OF {multiMediaTotalResults} MEDIAS MATCH “{searchQuery}”</p>
         <div className="md:grid md:grid-cols-4 flex flex-col gap-4 items-center md:items-start">
             {multiMediaResults.map((media : Media)=>{
@@ -56,7 +54,7 @@ export default async function SearchPage({
             })}
         </div>
     <div className="flex justify-center h-full mb-5">
-                <Pagination totalPages={multiMediaTotalPages} />
+                <AppPagination totalPages={multiMediaTotalPages} />
     </div>
 </div>
 

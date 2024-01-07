@@ -18,19 +18,26 @@ const requestParams = {
   discoverTvSeries: 'discover/tv',
   multiSearch: 'search/multi',
   searchMovies: 'search/movie',
-  searchTvSeries: 'search/tv'
+  searchTvSeries: 'search/tv',
+  movieExternalIds:(id:number) => `movie/${id}/external_ids`,
+  mediaRating : (imdbId:number) => `?i=${imdbId}`
 }
 
-const BASE_URL = process.env.MOVIE_DB_BASEURL;
-const BEARER_TOKEN = process.env.MOVIE_DB_BEARER_TOKEN
+const TMDB_BASE_URL = process.env.TMDB_BASEURL;
+const TMDB_BEARER_TOKEN = process.env.TMDB_BEARER_TOKEN;
+const OMDB_BASE_URL = process.env.OMDB_BASEURL;
+const OMDB_APIKEY = process.env.OMDB_APIKEY;
 
 export async function fetchTopTenTrendingMovies() {
-  console.log(`${BASE_URL}${requestParams.trendingMovies}?language=en-US`);
+  console.log(`${TMDB_BASE_URL}${requestParams.trendingMovies}?language=en-US`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.trendingMovies}?language=en-US`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.trendingMovies}?language=en-US`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
+      },
+      next:{
+        revalidate:3600
       }
     });
 
@@ -47,12 +54,15 @@ export async function fetchTopTenTrendingMovies() {
 }
 
 export async function fetchTopTenNowPlayingMovies() {
-  console.log(`${BASE_URL}${requestParams.nowPlayingMovies}?language=en-US&page=1`);
+  console.log(`${TMDB_BASE_URL}${requestParams.nowPlayingMovies}?language=en-US&page=1`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.nowPlayingMovies}?language=en-US&page=1`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.nowPlayingMovies}?language=en-US&page=1`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
+      }, 
+      next:{
+        revalidate:3600
       }
     });
 
@@ -69,12 +79,15 @@ export async function fetchTopTenNowPlayingMovies() {
 }
 
 export async function fetchTopTenTrendingTvSeries() {
-  console.log(`${BASE_URL}${requestParams.trendingTvSeries}?language=en-US`);
+  console.log(`${TMDB_BASE_URL}${requestParams.trendingTvSeries}?language=en-US`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.trendingTvSeries}?language=en-US`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.trendingTvSeries}?language=en-US`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
+      },
+      next:{
+        revalidate:3600
       }
     });
 
@@ -91,12 +104,15 @@ export async function fetchTopTenTrendingTvSeries() {
 }
 
 export async function fetchTopTenOnAirTvSeries() {
-  console.log(`${BASE_URL}${requestParams.onTheAirTv}?language=en-US&page=1`);
+  console.log(`${TMDB_BASE_URL}${requestParams.onTheAirTv}?language=en-US&page=1`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.onTheAirTv}?language=en-US&page=1`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.onTheAirTv}?language=en-US&page=1`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
+      },
+      next:{
+        revalidate:3600
       }
     });
 
@@ -113,12 +129,15 @@ export async function fetchTopTenOnAirTvSeries() {
 }
 
 export async function fetchMovieDetails(movieId: number) {
-  console.log(`${BASE_URL}${requestParams.movieDetails(movieId)}?language=en-US`);
+  console.log(`${TMDB_BASE_URL}${requestParams.movieDetails(movieId)}?language=en-US`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.movieDetails(movieId)}?language=en-US&page=1`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.movieDetails(movieId)}?language=en-US&page=1`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
+      },
+      next:{
+        revalidate:86400
       }
     });
 
@@ -135,11 +154,11 @@ export async function fetchMovieDetails(movieId: number) {
 }
 
 export async function fetchMovieCredits(movieId: number) {
-  console.log(`${BASE_URL}${requestParams.movieCredits(movieId)}?language=en-US`);
+  console.log(`${TMDB_BASE_URL}${requestParams.movieCredits(movieId)}?language=en-US`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.movieCredits(movieId)}?language=en-US`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.movieCredits(movieId)}?language=en-US`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
       }
     });
@@ -159,7 +178,7 @@ export async function fetchMovieCredits(movieId: number) {
 export async function fetchDiscoverMovies(page: number = 1, sortby: string = "popularity.desc"
   , releaseYear?: number, language?: string, genre?: string[], originCountry?: string) {
   // Start with the base URL and mandatory parameters
-  let url = `${BASE_URL}${requestParams.discoverMovies}?include_adult=false&include_video=false&page=${page}&sort_by=${sortby}`;
+  let url = `${TMDB_BASE_URL}${requestParams.discoverMovies}?include_adult=false&include_video=false&page=${page}&sort_by=${sortby}`;
 
   // Add optional parameters if they are provided
   if (releaseYear) {
@@ -182,7 +201,7 @@ export async function fetchDiscoverMovies(page: number = 1, sortby: string = "po
     console.log(url);
     const response = await fetch(url, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
       },
       next: {
@@ -206,7 +225,7 @@ export async function fetchDiscoverMovies(page: number = 1, sortby: string = "po
 export async function fetchDiscoverTvSeries(page: number = 1, sortby: string = "popularity.desc"
   , firstAirYear?: number, language?: string, genre?: string[], originCountry?: string) {
   // Start with the base URL and mandatory parameters
-  let url = `${BASE_URL}${requestParams.discoverTvSeries}?include_adult=false&include_null_first_air_dates=false&page=${page}&sort_by=${sortby}`;
+  let url = `${TMDB_BASE_URL}${requestParams.discoverTvSeries}?include_adult=false&include_null_first_air_dates=false&page=${page}&sort_by=${sortby}`;
 
   // Add optional parameters if they are provided
   if (firstAirYear) {
@@ -229,7 +248,7 @@ export async function fetchDiscoverTvSeries(page: number = 1, sortby: string = "
     console.log(url);
     const response = await fetch(url, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
       },
       next: {
@@ -251,11 +270,11 @@ export async function fetchDiscoverTvSeries(page: number = 1, sortby: string = "
 }
 
 export async function fetchMultiDataFromSearch(page: number, query: string) {
-  console.log(`${BASE_URL}${requestParams.multiSearch}?query=${query}&include_adult=false&language=en-US&page=${page}`);
+  console.log(`${TMDB_BASE_URL}${requestParams.multiSearch}?query=${query}&include_adult=false&language=en-US&page=${page}`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.multiSearch}?query=${query}&include_adult=false&language=en-US&page=${page}`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.multiSearch}?query=${query}&include_adult=false&language=en-US&page=${page}`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
       },
       cache: 'no-store'
@@ -274,11 +293,11 @@ export async function fetchMultiDataFromSearch(page: number, query: string) {
 }
 
 export async function fetchTvSeriesFromSearch(page: number, query: string) {
-  console.log(`${BASE_URL}${requestParams.searchTvSeries}?query=${query}&include_adult=false&language=en-US&page=${page}`);
+  console.log(`${TMDB_BASE_URL}${requestParams.searchTvSeries}?query=${query}&include_adult=false&language=en-US&page=${page}`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.searchTvSeries}?query=${query}&include_adult=false&language=en-US&page=${page}`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.searchTvSeries}?query=${query}&include_adult=false&language=en-US&page=${page}`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
       },
       cache: 'no-store'
@@ -297,11 +316,11 @@ export async function fetchTvSeriesFromSearch(page: number, query: string) {
 }
 
 export async function fetchMoviesFromSearch(page: number, query: string) {
-  console.log(`${BASE_URL}${requestParams.searchMovies}?query=${query}&include_adult=false&language=en-US&page=${page}`);
+  console.log(`${TMDB_BASE_URL}${requestParams.searchMovies}?query=${query}&include_adult=false&language=en-US&page=${page}`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.searchMovies}?query=${query}&include_adult=false&language=en-US&page=${page}`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.searchMovies}?query=${query}&include_adult=false&language=en-US&page=${page}`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
       },
       cache: 'no-store'
@@ -320,12 +339,15 @@ export async function fetchMoviesFromSearch(page: number, query: string) {
 }
 
 export async function fetchTvSeriesDetail(tvSerieId: number) {
-  console.log(`${BASE_URL}${requestParams.tvSeriesDetails(tvSerieId)}?language=en-US`);
+  console.log(`${TMDB_BASE_URL}${requestParams.tvSeriesDetails(tvSerieId)}?language=en-US`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.tvSeriesDetails(tvSerieId)}?language=en-US`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.tvSeriesDetails(tvSerieId)}?language=en-US`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
+      },
+      next:{
+        revalidate:86400
       }
     });
 
@@ -342,11 +364,11 @@ export async function fetchTvSeriesDetail(tvSerieId: number) {
 }
 
 export async function fetchTvSeriesCredits(tvSerieId: number) {
-  console.log(`${BASE_URL}${requestParams.tvSeriesCredits(tvSerieId)}?language=en-US`);
+  console.log(`${TMDB_BASE_URL}${requestParams.tvSeriesCredits(tvSerieId)}?language=en-US`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.tvSeriesCredits(tvSerieId)}?language=en-US`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.tvSeriesCredits(tvSerieId)}?language=en-US`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
       }
     });
@@ -364,12 +386,15 @@ export async function fetchTvSeriesCredits(tvSerieId: number) {
 }
 
 export async function fetchTvSeriesSeasonDetails(tvSerieId: number, seasonNumber: number) {
-  console.log(`${BASE_URL}${requestParams.tvSeriesSeasonDetails(tvSerieId, seasonNumber)}?language=en-US`);
+  console.log(`${TMDB_BASE_URL}${requestParams.tvSeriesSeasonDetails(tvSerieId, seasonNumber)}?language=en-US`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.tvSeriesSeasonDetails(tvSerieId, seasonNumber)}?language=en-US`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.tvSeriesSeasonDetails(tvSerieId, seasonNumber)}?language=en-US`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
+      },
+      next:{
+        revalidate:86400
       }
     });
 
@@ -386,11 +411,11 @@ export async function fetchTvSeriesSeasonDetails(tvSerieId: number, seasonNumber
 }
 
 export async function fetchTvSeriesSeasonCredits(tvSerieId: number, seasonNumber: number) {
-  console.log(`${BASE_URL}${requestParams.tvSeriesSeasonCredits(tvSerieId, seasonNumber)}?language=en-US`);
+  console.log(`${TMDB_BASE_URL}${requestParams.tvSeriesSeasonCredits(tvSerieId, seasonNumber)}?language=en-US`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.tvSeriesSeasonCredits(tvSerieId, seasonNumber)}?language=en-US`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.tvSeriesSeasonCredits(tvSerieId, seasonNumber)}?language=en-US`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
       }
     });
@@ -409,11 +434,11 @@ export async function fetchTvSeriesSeasonCredits(tvSerieId: number, seasonNumber
 
 
 export async function fetchLanguages() {
-  console.log(`${BASE_URL}${requestParams.languages}`);
+  console.log(`${TMDB_BASE_URL}${requestParams.languages}`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.languages}`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.languages}`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
       }
     });
@@ -431,11 +456,11 @@ export async function fetchLanguages() {
 }
 
 export async function fetchCountries() {
-  console.log(`${BASE_URL}${requestParams.countries}`);
+  console.log(`${TMDB_BASE_URL}${requestParams.countries}`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.countries}`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.countries}`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
       }
     });
@@ -453,11 +478,11 @@ export async function fetchCountries() {
 }
 
 export async function fetchMovieGenres() {
-  console.log(`${BASE_URL}${requestParams.movieGenres}`);
+  console.log(`${TMDB_BASE_URL}${requestParams.movieGenres}`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.movieGenres}`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.movieGenres}`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
       }
     });
@@ -475,11 +500,11 @@ export async function fetchMovieGenres() {
 }
 
 export async function fetchTvGenres() {
-  console.log(`${BASE_URL}${requestParams.tvGenres}`);
+  console.log(`${TMDB_BASE_URL}${requestParams.tvGenres}`);
   try {
-    const response = await fetch(`${BASE_URL}${requestParams.tvGenres}`, {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.tvGenres}`, {
       headers: {
-        'Authorization': `Bearer ${BEARER_TOKEN}`,
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
         'Content-Type': 'application/json'
       }
     });
@@ -492,6 +517,49 @@ export async function fetchTvGenres() {
     return data.genres;
   } catch (e) {
     console.error('An error occurred while fetching the movie credits:', e);
+    return null;
+  }
+}
+
+export async function fetchMovieExternalIds(movieId:number) {
+  console.log(`${TMDB_BASE_URL}${requestParams.movieExternalIds(movieId)}`);
+  try {
+    const response = await fetch(`${TMDB_BASE_URL}${requestParams.movieExternalIds(movieId)}`, {
+      headers: {
+        'Authorization': `Bearer ${TMDB_BEARER_TOKEN}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error('An error occurred while fetching the movie external ids:', e);
+    return null;
+  }
+}
+
+export async function fetchMediaRating(imdbId:number) {
+  console.log(`${OMDB_BASE_URL}${requestParams.mediaRating(imdbId)}&apikey=${OMDB_APIKEY}`);
+  try {
+    const response = await fetch(`${OMDB_BASE_URL}${requestParams.mediaRating(imdbId)}&apikey=${OMDB_APIKEY}`, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    const data = await response.json();
+    return data.Ratings;
+  } catch (e) {
+    console.error('An error occurred while fetching the media ratings:', e);
     return null;
   }
 }

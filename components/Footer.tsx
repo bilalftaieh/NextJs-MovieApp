@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <footer className="p-4 bg-slate-700">
+        <footer className="p-4 ">
             <div className="flex flex-col items-center gap-3">
                 <div className="flex items-center space-x-2">
                     <FontAwesomeIcon icon={faGithub} size="2x"/>

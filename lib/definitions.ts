@@ -59,6 +59,11 @@ export type MediaType = {
   href: string
 }
 
+export type MediaRating = {
+  Source:string;
+  Value:string;
+}
+
 // Props for Search component
 export type SearchProps = {
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void; // Function to handle input change
@@ -98,6 +103,12 @@ export interface CountryProps {
 export interface ReleaseYearProps {
   handleYearOnChange: (arg: string) => void; // Function to handle year change
 }
+
+export interface LogoProps {
+  src: string;
+  alt: string;
+}
+
 
 export interface FilterOptionsContainerProps {
   genres: Genre[]

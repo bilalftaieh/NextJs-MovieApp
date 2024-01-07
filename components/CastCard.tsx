@@ -32,7 +32,7 @@ const CastCard: React.FC<CastCardProps> = ({ name, character, imageUrl }) => {
         />
       </div>
       <div className="flex-grow px-6 py-4 text-center ">
-        <h1 className="font-bold text-xl mb-2">{name}</h1>  {/*Name of the cast member */}
+        <h1 className="font-bold text-xl mb-2 text-white">{name}</h1>  {/*Name of the cast member */}
         <p className="text-gray-400 text-base">{character}</p> {/* Character played by the cast member */}
       </div>
     </div>

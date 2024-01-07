@@ -25,10 +25,12 @@ const MediaCard: React.FC<MediaCardProps> = ({ imageUrl, mediaName, releaseDate,
 
     // Placeholder for the image
     const placeholder = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC';
-
+    
     // Content for the MediaCard component
     const content = (
-        <div className="media-card flex flex-col items-center max-w-xs rounded overflow-hidden hover:scale-110 transition-transform cursor-pointer">
+        <div className="media-card flex flex-col items-center 
+        max-w-xs rounded overflow-hidden hover:scale-110 
+        transition-transform cursor-pointer text-white">
             <div className="relative h-64 w-full">
                 <Image
                     src={imageSrc} // Source of the image
@@ -51,7 +53,8 @@ const MediaCard: React.FC<MediaCardProps> = ({ imageUrl, mediaName, releaseDate,
                         Release Date: <span className="font-semibold whitespace-nowrap">{formatDateString(releaseDate)}</span>
                     </p>
                 )} {/* Release date of the movie */}
-                {tagline && <p className="text-sm font-semibold italic mt-2 text-gray-400 text-center">{tagline}</p>} {/* Tagline for the movie*/}
+                {tagline && <p className="text-sm font-semibold italic 
+                mt-2 text-custom-two text-center">{tagline.toUpperCase()}</p>} {/* Tagline for the movie*/}
             </div>
         </div>
     );

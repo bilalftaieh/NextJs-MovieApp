@@ -12,7 +12,8 @@ export default function LoadingDisplay({ text }: { text: string }) {
   }, []);
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gradient-to-r from-slate-600 via-slate-700 to-slate-800 animate-gradient-x">
+    <div className="flex items-center justify-center h-screen bg-gradient-to-r from-custom-one-light 
+    via-custom-one to-custom-one-dark animate-gradient-x">
       <span className="text-white text-2xl">{text}{dots}</span>
     </div>
   );

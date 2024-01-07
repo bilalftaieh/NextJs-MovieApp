@@ -1,7 +1,11 @@
 import MediaCardContainer from "@/components/MediaCardContainer";
-import { MediaCardsSkeleton } from "@/components/Skeletons";
 import { fetchTvSeriesFromSearch } from "@/lib/movie-api";
-import { Suspense } from "react";
+import { Metadata } from "next";
+
+export const metadata : Metadata = {
+    title:'TV Series Search',
+    description : 'Search for TV Series'
+} 
 
 export default async function TvSeriesSearchPage(
     {

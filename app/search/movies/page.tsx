@@ -1,7 +1,11 @@
 import MediaCardContainer from "@/components/MediaCardContainer";
 import { fetchMoviesFromSearch } from "@/lib/movie-api";
+import { Metadata } from "next";
 
-
+export const metadata : Metadata = {
+    title:'Movie Search',
+    description : 'Search for Movies'
+} 
 export default async function MoviesSearchPage(
     {
         searchParams,

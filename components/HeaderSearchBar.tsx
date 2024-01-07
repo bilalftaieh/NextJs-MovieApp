@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 // The main function for the HeaderSearchBar component
-export default function HeaderSearchBar() {
+export default function HeaderSearchBar({setIsMenuOpen}:{setIsMenuOpen?:React.Dispatch<React.SetStateAction<boolean>>}) {
     // State for the search value
     const [searchValue, setSearchValue] = useState('');
     const [emptySearch, setEmptySearch] = useState(false);
@@ -25,6 +25,7 @@ export default function HeaderSearchBar() {
         }
         setSearchValue('');
         setEmptySearch(true);
+        setIsMenuOpen ? setIsMenuOpen(false) : undefined;
         setTimeout(() => setEmptySearch(false), 0);
         push(`/search?${params.toString()}`);
     }

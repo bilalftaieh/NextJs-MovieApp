@@ -44,10 +44,10 @@ export default async function MoviesPage({
     // Returning the JSX for the page
     return (
         <div className="md:grid md:grid-cols-4 gap-4 flex flex-col
-        bg-slate-700 h-full md:overflow-auto space-y-4 text-gray-200 overflow-hidden">
+         h-full md:overflow-auto space-y-4 overflow-hidden">
             <div className="md:col-span-1 md:h-screen flex flex-col ml-4">
                 <div className="p-4">
-                    <h1 className="text-4xl font-bold mb-4">Discover Movies</h1>
+                    <h1 className="text-4xl font-bold mb-4 text-white">Discover Movies</h1>
                     <p className="text-lg mb-4">Explore a wide variety of movies from different genres, languages, and countries. Use the filters to find your next favorite film.</p>
                 </div>
                 <FilterOptionsContainer languages={filterLanguageOptions}

@@ -10,10 +10,12 @@ To use this app, follow these steps:
 
 1. Clone the repository to your local machine.
 2. Run `npm install` to install all the necessary dependencies.
-3. Fill in the environment variables in your `.env` file. You will need to create a TMDB account and get the following details:
-    - `MOVIE_DB_BASEURL`
-    - `MOVIE_DB_APIKEY`
-    - `MOVIE_DB_BEARER_TOKEN`
+3. Fill in the environment variables in your `.env` file. You will need to create a TMDB account and OMDB to get the following details:
+    - `TMDB_BASEURL`
+    - `TMDB_APIKEY`
+    - `TMDB_BEARER_TOKEN`
+    - `OMDB_BASEURL`
+    - `OMDB_APIKEY`
 4. Run the app locally using `npm run dev`.
 
 ## Live Demo

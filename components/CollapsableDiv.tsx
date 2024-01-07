@@ -22,10 +22,10 @@ export default function CollapsableDiv({ name, children }: CollapsableDivProps) 
 
     // Returning the JSX for the component
     return (
-        <div className="flex flex-col bg-slate-700 text-gray-300 p-4 hover:bg-slate-800">
+        <div className="flex flex-col p-4 hover:bg-custom-one-dark">
             <div className="collapsable-div flex flex-row items-center cursor-pointer p-2 
             rounded-md space-x-4" onClick={handleClick}>
-                <h2 className="font-bold text-lg">{name}</h2>
+                <h2 className="font-bold text-lg text-white">{name}</h2>
                 <div>
                     {!isExpanded && <FontAwesomeIcon icon={faArrowRight} />}
                     {isExpanded && <FontAwesomeIcon icon={faArrowDown} />}

@@ -52,10 +52,10 @@ export default function SearchLayout({
     
     // Return the component JSX
     return(
-        <div className="md:grid md:grid-cols-4 gap-4 bg-slate-700 space-y-4 text-gray-200
+        <div className="md:grid md:grid-cols-4 gap-4 space-y-4 
         flex flex-col w-full min-h-screen">
             <div className="md:col-span-1 ml-3 mt-5">
-                <h1 className="text-4xl font-bold mb-4">Media Search</h1>
+                <h1 className="text-4xl font-bold mb-4 text-white">Media Search</h1>
                 <p className="mb-4">Search for your favorite TV shows, movies, and more.</p>
                 <div className="flex flex-col gap-4"> 
                     {mediaTypes.map((mediaType,index)=>{

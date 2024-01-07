@@ -2,6 +2,7 @@ import CastCard from "@/components/CastCard";
 import MediaBackdrop from "@/components/MediaBackdrop";
 import MediaCard from "@/components/MediaCard";
 import { Cast } from "@/lib/definitions";
+import { merriWeather_400, merriWeather_700 } from "@/lib/font";
 import { fetchTvSeriesCredits, fetchTvSeriesDetail } from "@/lib/movie-api";
 import { createMediaSlug, formatDateString, getFormattedGenres, extractIdFromSlug, extractYear } from "@/lib/utils";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -43,11 +44,19 @@ export default async function TvSeriesDetailsPage({ params }: { params: { slug: 
         return filteredCastArray.slice(0, 10);
     };
 
+    // For headers in the first column
+    const firstColumnHeaderClass = `text-lg font-semibold text-center text-white ${merriWeather_700.className}`;
+    const firstColumnParagraphClass = `text-base text-center ${merriWeather_400.className}`
+
+    // For headers in the second column
+    const secondColumnHeaderClass = `text-3xl font-bold mb-2 text-white ${merriWeather_700.className}`;
+    const secondColumnParagraphClass = `text-lg break-normal ${merriWeather_400.className}`
+
     return (
-        <div className="flex flex-col bg-slate-700 text-gray-100 p-4 space-y-4">
+        <div className="transform translate-y-24 md:-translate-y-32">
             <MediaBackdrop imageUrl={`https://image.tmdb.org/t/p/original${tvSerieDetails.backdrop_path}`} />
-            <div className="md:grid md:grid-cols-4 flex flex-col">
-                <div className="md:col-span-1 flex flex-col p-4 rounded-lg md:items-stretch">
+            <div className="md:grid md:grid-cols-4 flex flex-col -translate-y-20 md:-translate-y-28">
+                <div className="md:col-span-1 flex flex-col p-4 rounded-lg md:items-stretch gap-4">
                     <MediaCard imageUrl={`https://image.tmdb.org/t/p/original${tvSerieDetails.poster_path}`}
                         tagline={tvSerieDetails.tagline} href={tvSerieDetails.homepage}
                         className="rounded-lg shadow-md" />
@@ -55,49 +64,49 @@ export default async function TvSeriesDetailsPage({ params }: { params: { slug: 
                     <div className="flex flex-row items-center space-x-6 md:space-x-0 md:flex-col justify-center">
 
                         <div>
-                            <h2 className="text-lg font-semibold mt-4 text-center">Created by:</h2>
+                            <h2 className={firstColumnHeaderClass}>Created by:</h2>
                             {tvSerieDetails.created_by.length > 0 ?
                                 (tvSerieDetails.created_by.map((creator: { name: string; id: number }) => {
-                                    return <p key={creator.id} className="text-lg text-gray-400 text-center">{creator.name}</p>
-                                })) : <p className="text-lg text-gray-400 text-center">---</p>}
+                                    return <p key={creator.id} className={firstColumnParagraphClass}>{creator.name}</p>
+                                })) : <p className={firstColumnParagraphClass}>---</p>}
 
                         </div>
                     </div>
 
                     <div>
-                        <h2 className="text-lg font-semibold mt-4 text-center">No. of Seasons:</h2>
-                        <p className="text-lg text-gray-400 text-center">{tvSerieDetails.number_of_seasons}</p>
+                        <h2 className={firstColumnHeaderClass}>No. of Seasons:</h2>
+                        <p className={firstColumnParagraphClass}>{tvSerieDetails.number_of_seasons}</p>
                     </div>
 
                     <div>
-                        <h2 className="text-lg font-semibold mt-4 text-center">No. of Episodes:</h2>
-                        <p className="text-lg text-gray-400 text-center">{tvSerieDetails.number_of_episodes}</p>
+                        <h2 className={firstColumnHeaderClass}>No. of Episodes:</h2>
+                        <p className={firstColumnParagraphClass}>{tvSerieDetails.number_of_episodes}</p>
                     </div>
 
                     <div>
-                        <h2 className="text-lg font-semibold mt-4 text-center">Watch on:</h2>
+                        <h2 className={firstColumnHeaderClass}>Watch on:</h2>
                         {tvSerieDetails.networks.map((network: { id: number; logo_path: string; name: string }) => {
                             return (
                                 <div key={network.id} className="flex flex-col items-center justify-center space-x-3 mt-4">
-                                    {network.logo_path && <Image src={`https://image.tmdb.org/t/p/original${network.logo_path}`} alt="Network Logo" width={70} height={70} />}
-                                    {!network.logo_path && <p className="text-sm font-medium text-gray-400">{network.name}</p>}
+                                    {network.logo_path && <Image src={`https://image.tmdb.org/t/p/h50_filter(negate,000,666)${network.logo_path}`} alt="Network Logo" width={70} height={70} />}
+                                    {!network.logo_path && <p className={firstColumnParagraphClass}>{network.name}</p>}
                                 </div>
                             )
                         })}
                     </div>
 
-                    <h2 className="text-lg font-semibold mt-4 text-center">Produced by:</h2>
+                    <h2 className={firstColumnHeaderClass}>Produced by:</h2>
                     {tvSerieDetails.production_companies.length > 0 ? (
                         tvSerieDetails.production_companies.map((company: { logo_path: string, name: string }, index: number) => {
                             return (
                                 <div key={index} className="flex flex-row items-center justify-center space-x-3 mt-4">
-                                    {company.logo_path && <Image src={`https://image.tmdb.org/t/p/original${company.logo_path}`} alt="Company Logo" width={70} height={70} />}
-                                    {!company.logo_path && <p className="text-sm font-medium text-gray-400">{company.name}</p>}
+                                    {company.logo_path && <Image src={`https://image.tmdb.org/t/p/h50_filter(negate,000,666)${company.logo_path}`} alt="Company Logo" width={70} height={70} />}
+                                    {!company.logo_path && <p className={firstColumnParagraphClass}>{company.name}</p>}
                                 </div>
                             )
                         })
                     ) : (
-                        <p className="text-lg text-gray-400 text-center">---</p>
+                        <p className={firstColumnParagraphClass}>---</p>
                     )}
 
 
@@ -106,27 +115,27 @@ export default async function TvSeriesDetailsPage({ params }: { params: { slug: 
 
 
                 <div className="md:col-span-3 p-4">
-                    <div className="flex flex-col space-y-7 text-center md:text-start">
+                    <div className="flex flex-col space-y-6 text-center md:text-start">
                         <div>
-                            <header className="text-4xl font-bold mb-2">{tvSerieDetails.name}</header>
-                            <p className="text-lg text-gray-400">{tvSerieDetails.in_production ?
+                            <header className={secondColumnHeaderClass}>{tvSerieDetails.name}</header>
+                            <p className={secondColumnParagraphClass}>{tvSerieDetails.in_production ?
                                 (formatDateString(tvSerieDetails.first_air_date) + '-present') :
                                 (formatDateString(tvSerieDetails.first_air_date) + '-' +
                                     formatDateString(tvSerieDetails.last_air_date))
                             } · {getFormattedGenres(tvSerieDetails.genres)}</p>
                         </div>
                         <div>
-                            <p className="text-3xl font-bold mb-2">
+                            <p className={secondColumnHeaderClass}>
                                 Overview
                             </p>
-                            <p className="text-lg text-gray-400 break-normal">
+                            <p className={secondColumnParagraphClass}>
                                 {tvSerieDetails.overview}
                             </p>
                         </div>
 
 
                         <div>
-                            <p className="text-3xl font-bold mb-2">
+                            <p className={secondColumnHeaderClass}>
                                 Cast
                             </p>
                             <div className="flex flex-row overflow-x-scroll justify-between space-x-4">
@@ -147,7 +156,7 @@ export default async function TvSeriesDetailsPage({ params }: { params: { slug: 
 
 
                         <div>
-                            <p className="text-3xl font-bold mb-5">
+                            <p className={secondColumnHeaderClass}>
                                 Seasons
                             </p>
                             <div className="flex flex-row overflow-x-scroll overflow-y-hidden ">
