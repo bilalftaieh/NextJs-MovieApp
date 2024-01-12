@@ -55,7 +55,7 @@ export default async function SeasonPage({ params }:
 
     return (
         <div className="md:grid md:grid-cols-4 flex flex-col h-full">
-            <div className="md:col-span-1 flex flex-col p-4 rounded-lg gap-4">
+            <div className="md:col-span-1 flex flex-col p-4 items-center gap-4">
                 <MediaCard imageUrl={`https://image.tmdb.org/t/p/original${seasonDetailObject.poster_path}`}
                     className="rounded-lg shadow-md" />
 

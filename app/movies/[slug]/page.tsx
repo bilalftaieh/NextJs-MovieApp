@@ -69,10 +69,10 @@ export default async function MovieDetailsPage({ params }: { params: { slug: str
             <MediaBackdrop imageUrl={`https://image.tmdb.org/t/p/original${movieDetails.backdrop_path}`} />
 
             <div className="md:grid md:grid-cols-4 flex flex-col -translate-y-20 md:-translate-y-28">
-                <div className="md:col-span-1 flex flex-col p-4 rounded-lg items-center md:items-stretch gap-4">
+                <div className="md:col-span-1 flex flex-col p-4 rounded-lg items-center gap-4">
                     <MediaCard imageUrl={`https://image.tmdb.org/t/p/original${movieDetails.poster_path}`}
                         tagline={movieDetails.tagline} href={movieDetails.homepage}
-                        className="rounded-lg shadow-md" />
+                         />
 
                     <div className="flex flex-row items-center space-x-6 md:space-x-0 md:flex-col justify-center gap-4">
                         <div>

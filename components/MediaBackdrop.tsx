@@ -74,6 +74,7 @@ const MediaBackdrop = ({ imageUrl }: { imageUrl: string }) => {
     return (
         <StyledDiv>
             <StyledImage
+                unoptimized 
                 src={imageUrl} // Source of the image
                 alt="Movie Backdrop" // Alt text for the image
                 fill

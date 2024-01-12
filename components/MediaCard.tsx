@@ -1,9 +1,11 @@
 'use client'
 // Importing necessary libraries
 import React, { useState } from 'react';
-import Image from 'next/image';
+import NextImage from 'next/image';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { formatDateString } from '@/lib/utils';
+import { Card, CardHeader, CardBody, CardFooter, Image } from "@nextui-org/react";
 
 // Props for MediaCard component
 type MediaCardProps = {
@@ -18,49 +20,39 @@ type MediaCardProps = {
 
 // The main function for the MediaCard component
 const MediaCard: React.FC<MediaCardProps> = ({ imageUrl, mediaName, releaseDate, href, tagline }) => {
-    const [imageSrc, setImageSrc] = useState(imageUrl);
-    const handleError = () => {
-        setImageSrc('/default-image.png'); // Set the path to your default image here
-    };
-
-    // Placeholder for the image
-    const placeholder = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC';
-    
-    // Content for the MediaCard component
-    const content = (
-        <div className="media-card flex flex-col items-center 
-        max-w-xs rounded overflow-hidden hover:scale-110 
-        transition-transform cursor-pointer text-white">
-            <div className="relative h-64 w-full">
+    const hoverScaleClass = href ? 'hover:scale-110' : '';
+    // const cardPressableProps = href ? { isPressable: true, onPress: () => push(href) } : {};
+    return (
+        <Link href={href || ''}>
+            <Card className={`bg-transparent max-w-[200px] flex flex-col ${hoverScaleClass} shadow-none`}>
+            <CardBody className='flex-grow'>
                 <Image
-                    src={imageSrc} // Source of the image
-                    alt={'No Image'} // Alt text for the image
-                    fill
-                    sizes="100%"
-                    style={{ objectFit: "contain" }} // Style for the image
+                    unoptimized 
+                    as={NextImage}
+                    width={200}
+                    height={200}
+                    alt={mediaName}
+                    className="object-cover rounded-xl"
                     priority
-                    placeholder='blur' // Placeholder for the image
-                    blurDataURL={placeholder} // Data URL for the placeholder
-                    onError={handleError}
-                    className='w-auto'
+                    src={imageUrl}
+                    fallbackSrc={'/default-image.png'}
                 />
-            </div>
-            <div className="flex-grow px-6 py-4 text-center ">
-                {mediaName && <div className="font-bold text-lg mb-2">
-                    <p className='truncate md:overflow-visible md:whitespace-normal'>{mediaName}</p> </div>} {/* Name of the movie */}
+            </CardBody>
+            <CardFooter className="flex flex-col gap-4 ">
+                {mediaName && <p className='text-lg font-bold line-clamp-1'>{mediaName}</p>}
                 {releaseDate && (
-                    <p className="text-sm">
+                    <p className="text-sm text-custom-two">
                         Release Date: <span className="font-semibold whitespace-nowrap">{formatDateString(releaseDate)}</span>
                     </p>
                 )} {/* Release date of the movie */}
                 {tagline && <p className="text-sm font-semibold italic 
-                mt-2 text-custom-two text-center">{tagline.toUpperCase()}</p>} {/* Tagline for the movie*/}
-            </div>
-        </div>
-    );
+                text-custom-two text-center">{tagline.toUpperCase()}</p>} {/* Tagline for the movie*/}
+            </CardFooter>
+        </Card>
+        </Link>
+        
+    )
 
-    // Returning the JSX for the component
-    return href ? <Link href={href}>{content}</Link> : <>{content}</>;
 };
 
 export default MediaCard;

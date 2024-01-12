@@ -1,4 +1,5 @@
 import CastCard from "@/components/CastCard";
+import HorizonatalScroller from "@/components/HorizontalScroller";
 import MediaBackdrop from "@/components/MediaBackdrop";
 import MediaCard from "@/components/MediaCard";
 import { Cast } from "@/lib/definitions";
@@ -56,10 +57,10 @@ export default async function TvSeriesDetailsPage({ params }: { params: { slug: 
         <div className="transform translate-y-24 md:-translate-y-32">
             <MediaBackdrop imageUrl={`https://image.tmdb.org/t/p/original${tvSerieDetails.backdrop_path}`} />
             <div className="md:grid md:grid-cols-4 flex flex-col -translate-y-20 md:-translate-y-28">
-                <div className="md:col-span-1 flex flex-col p-4 rounded-lg md:items-stretch gap-4">
+                <div className="md:col-span-1 flex flex-col p-4 rounded-lg items-center gap-4">
                     <MediaCard imageUrl={`https://image.tmdb.org/t/p/original${tvSerieDetails.poster_path}`}
                         tagline={tvSerieDetails.tagline} href={tvSerieDetails.homepage}
-                        className="rounded-lg shadow-md" />
+                         />
 
                     <div className="flex flex-row items-center space-x-6 md:space-x-0 md:flex-col justify-center">
 
@@ -138,7 +139,7 @@ export default async function TvSeriesDetailsPage({ params }: { params: { slug: 
                             <p className={secondColumnHeaderClass}>
                                 Cast
                             </p>
-                            <div className="flex flex-row overflow-x-scroll justify-between space-x-4">
+                            <HorizonatalScroller>
                                 {filterActors(castsObject.cast).map((cast) => {
                                     return <div className="min-w-max" key={cast.id} ><CastCard name={cast.name}
                                         character={cast.roles.length > 3 ? `${cast.roles.slice(0, 3).map(role => role.character).join(',')},.....`
@@ -146,12 +147,8 @@ export default async function TvSeriesDetailsPage({ params }: { params: { slug: 
                                         imageUrl={`https://image.tmdb.org/t/p/original${cast.profile_path}`} />
                                     </div>
                                 })}
-                                <div className="flex justify-center items-center">
-                                    <p className="text-lg font-semibold cursor-pointer text-center 
-                            ">View More <FontAwesomeIcon icon={faArrowRight} /></p>
-                                </div>
-
-                            </div>
+                               
+                            </HorizonatalScroller>
                         </div>
 
 
@@ -159,17 +156,17 @@ export default async function TvSeriesDetailsPage({ params }: { params: { slug: 
                             <p className={secondColumnHeaderClass}>
                                 Seasons
                             </p>
-                            <div className="flex flex-row overflow-x-scroll overflow-y-hidden ">
+                            <HorizonatalScroller>
                                 {tvSerieDetails.seasons.map((season: {
                                     air_date: string; name: string; poster_path: string; id: number
                                     season_number: string
                                 }) => {
-                                    return <div className="min-w-max mx-2" key={season.id}>
+                                    return <div className="min-w-max" key={season.id}>
                                         <MediaCard imageUrl={`https://image.tmdb.org/t/p/original${season.poster_path}`} mediaName={season.name}
                                             releaseDate={season.air_date} href={`${params.slug}/season/s${season.season_number}`} />
                                     </div>
                                 })}
-                            </div>
+                            </HorizonatalScroller>
 
                         </div>
 

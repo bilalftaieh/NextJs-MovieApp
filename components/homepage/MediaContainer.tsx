@@ -6,6 +6,8 @@ import MediaCard from "../MediaCard";
 import { useState } from "react";
 import { Movie, TvSerie } from "@/lib/definitions";
 import { createMediaSlug } from "@/lib/utils";
+import VerticalScrollContainer from "../HorizontalScroller";
+import HorizonatalScroller from "../HorizontalScroller";
 
 interface ButtonProps {
     moviesArray: Movie[],
@@ -32,7 +34,7 @@ export default function MediaContainer({ moviesArray, title, tvSeriesArray }: Bu
             <ButtonSwitch active={active} setActive={setActive} />
         </div>
 
-        <div className="grid md:grid-cols-5 grid-cols-2 md:grid-rows-2 gap-3 ">
+        {/* <div className="grid md:grid-cols-5 grid-cols-2 md:grid-rows-2 gap-3 ">
             {active === 'movie' && moviesArray.map((movie: Movie, index: number) => {
                 return (<MediaCard
                     key={index}
@@ -51,6 +53,29 @@ export default function MediaContainer({ moviesArray, title, tvSeriesArray }: Bu
                     href={`/tv-series/${createMediaSlug(tvSerie.name, tvSerie.id)}`}
                 />)
             })}
-        </div>
+        </div> */}
+
+        <HorizonatalScroller>
+        {active === 'movie' && moviesArray.map((movie: Movie, index: number) => {
+                return (<div className="min-w-max" key={movie.id}>
+                    <MediaCard
+                    imageUrl={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                    mediaName={movie.title}
+                    releaseDate={movie.release_date}
+                    href={`/movies/${createMediaSlug(movie.title, movie.id)}`}
+                />
+                </div>)
+            })}
+            {active === 'tv' && tvSeriesArray.map((tvSerie: TvSerie, index: number) => {
+                return (<div className="min-w-max" key={tvSerie.id}>
+                        <MediaCard
+                    imageUrl={`https://image.tmdb.org/t/p/original${tvSerie.poster_path}`}
+                    mediaName={tvSerie.name}
+                    releaseDate={tvSerie.first_air_date}
+                    href={`/tv-series/${createMediaSlug(tvSerie.name, tvSerie.id)}`}
+                />
+                    </div>)
+            })}
+        </HorizonatalScroller>
     </div>)
 }
