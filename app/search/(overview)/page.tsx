@@ -1,9 +1,9 @@
 import MediaCard from "@/components/MediaCard";
-import { fetchMoviesFromSearch, fetchMultiDataFromSearch, fetchTvSeriesFromSearch } from "@/lib/movie-api";
-import { Media, MediaType, Movie, TvSerie } from "@/lib/definitions";
+import { fetchMultiDataFromSearch} from "@/lib/movie-api";
+import { Media, Movie, TvSerie } from "@/lib/definitions";
 import { createMediaSlug } from "@/lib/utils";
 import type { Metadata } from 'next'
-import AppPagination from "@/components/AppPagination";
+import Pagination from "@/components/Pagination";
  
 export const metadata: Metadata = {
   title: 'Multi Search',
@@ -54,7 +54,7 @@ export default async function SearchPage({
             })}
         </div>
     <div className="flex justify-center h-full mb-5">
-                <AppPagination totalPages={multiMediaTotalPages} />
+                <Pagination totalPages={multiMediaTotalPages} />
     </div>
 </div>
 

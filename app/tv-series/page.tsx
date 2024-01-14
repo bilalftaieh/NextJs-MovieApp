@@ -47,7 +47,7 @@ export default async function TvSeriesPage(
         h-full md:overflow-auto space-y-4 overflow-hidden">
             <div className="md:col-span-1 md:h-screen flex flex-col ml-4">
                 <div className="p-4">
-                    <h1 className="text-4xl font-bold mb-4">Discover Tv Series</h1>
+                    <h1 className="text-4xl font-bold mb-4 text-white">Discover TV Series</h1>
                     <p className="text-lg mb-4">Explore a wide variety of tv series from different genres, languages, and countries. Use the filters to find your next favorite tv serie.</p>
                 </div>
                 <FilterOptionsContainer languages={filterLanguageOptions}

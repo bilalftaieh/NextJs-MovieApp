@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   title: 'Discover Movies',
   description: 'Explore our vast collection of movies. Filter and find movies that match your taste.',
 }
- 
-// The main function for the Movies Page
+
+ // The main function for the Movies Page
 export default async function MoviesPage({
     searchParams,
 }: {

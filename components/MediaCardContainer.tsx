@@ -2,7 +2,7 @@
 import { Media, MediaCardContainerProps, Movie, TvSerie } from "@/lib/definitions";
 import MediaCard from "./MediaCard";
 import { createMediaSlug } from "@/lib/utils";
-import AppPagination from "./AppPagination";
+import Pagination from "./Pagination";
 
 // The main function for the MediaCardContainer component
 export default function MediaCardContainer(
@@ -34,7 +34,7 @@ export default function MediaCardContainer(
                 }
             })}
             <div className="col-span-4 flex justify-center h-full mb-5">
-                <AppPagination
+                <Pagination
                     totalPages={totalPages}
                 />
             </div>

@@ -20,7 +20,8 @@ const config: Config = {
         'custom-one-light': '#2C3038',
         'custom-one-dark': '#0D0F12',
         'custom-two': '#9ab',
-        'custom-three':'#D8E0E8'
+        'custom-three':'#D8E0E8',
+        'custom-four' : '#27272A'
       },
       keyframes: {
         'color-change': {
